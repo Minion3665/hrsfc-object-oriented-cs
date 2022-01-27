@@ -63,6 +63,7 @@ namespace SimpleCardGame
 
         private static void Main()
         {
+            Deck.FisherYatesShuffle();
             Play();
         }
     }

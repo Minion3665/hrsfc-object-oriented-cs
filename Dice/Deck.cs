@@ -15,8 +15,7 @@ namespace Dice
 
         public Deck()
         {
-            Cards = Enumerable.Range(0, 52).ToArray();
-            FisherYatesShuffle();
+            Sort();
         }
         
         // This method is **DEPRECATED**. Use the Fisher-Yates shuffle instead.
@@ -31,7 +30,6 @@ namespace Dice
             // And set the current card to the top
             _currentCard = 0;
         }
-        
         public void FisherYatesShuffle()
         {
             // Shuffle using the Fisher-Yates algorithm
@@ -43,6 +41,11 @@ namespace Dice
             
             // And set the current card to the top
             _currentCard = 0;
+        }
+
+        public void Sort()
+        {
+            Cards = Enumerable.Range(0, 52).ToArray();
         }
 
         public Card Draw()
