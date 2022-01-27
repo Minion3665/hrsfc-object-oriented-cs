@@ -11,10 +11,15 @@ namespace Dice
         
         public Card Top => _currentCard >= Cards.Length ? null : Card.FromIndex(Cards[_currentCard]);
         
+        public int Count => Cards.Length - _currentCard;
+
         public Deck()
         {
-            Shuffle();
+            Cards = Enumerable.Range(0, 52).ToArray();
+            FisherYatesShuffle();
         }
+        
+        // This method is **DEPRECATED**. Use the Fisher-Yates shuffle instead.
         public void Shuffle()
         {
             // Get an iterable of all the integers from 0 to 51
@@ -22,6 +27,19 @@ namespace Dice
             
             // Shuffle the deck from the numbers
             Cards =  numbers.OrderBy(x => Random.Next()).ToArray();
+            
+            // And set the current card to the top
+            _currentCard = 0;
+        }
+        
+        public void FisherYatesShuffle()
+        {
+            // Shuffle using the Fisher-Yates algorithm
+            for (var i = 0; i < Cards.Length - 1; i++)
+            {
+                var r = Random.Next(i + 1, 52);
+                (Cards[i], Cards[r]) = (Cards[r], Cards[i]);
+            }
             
             // And set the current card to the top
             _currentCard = 0;
