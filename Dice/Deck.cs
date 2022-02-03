@@ -6,12 +6,10 @@ namespace Dice
     public class Deck
     {
         private int _currentCard;
-        public int[] Cards { get; private set; }
-        private static readonly Random Random = new Random();
+        public CircularQueue<int> Cards { get; private set; }
+        public Card Top => Card.FromIndex(Cards.Top);
         
-        public Card Top => _currentCard >= Cards.Length ? null : Card.FromIndex(Cards[_currentCard]);
-        
-        public int Count => Cards.Length - _currentCard;
+        public int Count => Cards.Count;
 
         public Deck()
         {

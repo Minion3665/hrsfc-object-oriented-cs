@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Card.cs" />
+        <Compile Include="CircularQueue.cs" />
         <Compile Include="Deck.cs" />
         <Compile Include="Die.cs" />
         <Compile Include="Program.cs" />
