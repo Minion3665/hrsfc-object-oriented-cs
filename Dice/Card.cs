@@ -69,6 +69,8 @@ namespace Dice
             
             return new Card(suit, value);
         }
+        
+        public int Index => (int) Suit * 13 + (int) Value - 1;
 
         public override string ToString()
         {
