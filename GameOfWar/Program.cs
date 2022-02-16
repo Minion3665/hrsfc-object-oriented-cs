@@ -19,13 +19,23 @@ namespace GameOfWar
             game.Draw(deck);
 
             Console.WriteLine("Starting the game...");
-            
-            while (game.Turn())
+
+            do
             {
-                Console.WriteLine($"Player 1 has {game.Player1.Count} cards and Player 2 has {game.Player2.Count} cards");
-            }
-            
-            Console.WriteLine($"The game is over, {(game.Player1.Count > game.Player2.Count ? "Player 1" : "Player 2")} wins!");
+                for (var i = 0; i < game.Players.Length; i++)
+                {
+                    if (game.Players[i].Empty)
+                    {
+                        Console.WriteLine($"Player {i + 1} is out");
+                        continue;
+                    }
+
+                    Console.WriteLine(
+                        $"Player {i + 1} has {game.Players[i].Count} cards; their top card is {game.Players[i][0]}.");
+                }
+            } while (!game.Turn());
+
+            Console.WriteLine($"Everyone but player {game.GetWinner() + 1} ran out of cards! They win the game!!!");
         }
     }
 }

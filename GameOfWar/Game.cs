@@ -5,56 +5,121 @@ namespace GameOfWar
 {
     public class Game
     {
-        public readonly Hand Player1 = new Hand();
-        public readonly Hand Player2 = new Hand();
+        public readonly Hand[] Players;
+        private readonly Hand[] _table;
+
+        public Game()
+        {
+            var playerCount = AskForPlayerCount();
+            Players = new Hand[playerCount];
+            _table = new Hand[playerCount];
+            
+            for (var i = 0; i < playerCount; i++)
+            {
+                Players[i] = new Hand();
+                _table[i] = new Hand();
+            }
+        }
+
+        private static int AskForPlayerCount()
+        {
+            int playerCount;
+            do {
+                Console.Write("How many players would you like? (2-4): ");
+            } while (!int.TryParse(Console.ReadLine(), out playerCount) || playerCount < 2 || playerCount > 4);
+            
+            return playerCount;
+        }
 
         public void Draw(Deck deck)
         {
             if (deck.Cards.Count % 2 != 0) deck.Draw();
-            while (!deck.Cards.Empty)
+            while (deck.Cards.Count >= Players.Length)
             {
-                Player1.Add(deck.Draw());
-                Player2.Add(deck.Draw());
+                foreach (var player in Players)
+                {
+                    player.Add(deck.Draw());
+                }
             }
         }
+        
+        public int? GetWinner()
+        {
+            var winner = null as int?;
+            var playersWithCardsLeft = 0;
+            for (var i = 0; i < Players.Length; i++)
+            {
+                if (Players[i].Empty) continue;
+                playersWithCardsLeft++;
+                winner = i;
+            }
+            return playersWithCardsLeft == 1 ? winner : null;
+        }
 
+        private bool IsGameOver()
+        {
+            var winner = GetWinner();
+            return winner != null;
+        }
+        
         public bool Turn()
         {
-            var inPlay = new Hand();
-            while (!Player1.Empty && !Player2.Empty)
+            var turnOver = false;
+            while (!turnOver)
             {
-                inPlay.Add(Player1.Pop());
-                inPlay.Add(Player2.Pop());
-                
-                if (inPlay[-1].Value > inPlay[-2].Value)
+                for (var i = 0; i < Players.Length; i++)
                 {
-                    while (inPlay.Count > 0)
-                    {
-                        Player1.Add(inPlay.Pop());
-                    }
-                    
-                    return true;
+                    if (Players[i].Empty) continue;
+                    var card = Players[i].Pop();
+                    _table[i].Add(card);
                 }
-                
-                if (inPlay[-1].Value < inPlay[-2].Value)
-                {
-                    while (inPlay.Count > 0)
-                    {
-                        Player2.Add(inPlay.Pop());
-                    }
 
-                    return true;
-                }
-                
-                for (var i = 0; i < 3; i++)
+                var topPlayerIndex = -1;
+                var war = false;
+                var maxScore = 0;
+
+                for (var i = 0; i < _table.Length; i++)
                 {
-                    if (Player1.Empty || Player2.Empty) break;
-                    inPlay.Add(Player1.Pop());
-                    inPlay.Add(Player2.Pop());
-                } // War is declared, add 3 cards to the table from each player
+                    if (_table[i].Empty) continue;
+                    var score = (int)_table[i][-1].Value;
+                    if (score < maxScore) continue;
+                    if (score == maxScore)
+                    {
+                        war = true; 
+                        continue;
+                    }
+                    maxScore = score;
+                    topPlayerIndex = i;
+                    war = false;
+                }
+                // Following rules from https://www.pagat.com/war/war.html; if there is a tie *all* players take part in the war
+                
+                if (war)
+                {
+                    Console.WriteLine("WAR! Players must all play two more cards and then the highest scoring player wins the war.");
+                    for (var i = 0; i < Players.Length; i++)
+                    {
+                        if (Players[i].Empty) continue;
+                        var card = Players[i].Pop();
+                        _table[i].Add(card);
+                        // We only add 1 card here so that the next time around the loop the war can be resolved
+                    }
+                }
+                else
+                {
+                    foreach (var hand in _table)
+                    {
+                        while (!hand.Empty)
+                        {
+                            var card = hand.Pop();
+                            Players[topPlayerIndex].Add(card);
+                        }
+                    }
+                    turnOver = true;
+                }
             }
 
-            return false;
+            return IsGameOver();
         }
     }
 }
