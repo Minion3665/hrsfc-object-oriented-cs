@@ -1,5 +1,5 @@
 ﻿using System;
-using Dice;
+using GameUtils;
 
 namespace SimpleCardGame
 {

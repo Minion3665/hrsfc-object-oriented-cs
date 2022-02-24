@@ -39,7 +39,6 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Game.cs" />
-        <Compile Include="Hand.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
@@ -47,9 +46,9 @@
       <None Include="packages.config" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Dice\Dice.csproj">
+      <ProjectReference Include="..\GameUtils\GameUtils.csproj">
         <Project>{f4188fb0-f3c9-4ec4-a274-e41bb305b993}</Project>
-        <Name>Dice</Name>
+        <Name>GameUtils</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

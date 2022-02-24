@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Dice
+namespace GameUtils
 {
     public enum Suits
     {

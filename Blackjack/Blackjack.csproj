@@ -4,11 +4,11 @@
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{D963B0F9-F4F5-4CEC-8577-A3A8DAE915DE}</ProjectGuid>
+        <ProjectGuid>{4B0C015F-CE61-4D83-BAFD-67C65DD1AA61}</ProjectGuid>
         <OutputType>Exe</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>SimpleCardGame</RootNamespace>
-        <AssemblyName>SimpleCardGame</AssemblyName>
+        <RootNamespace>Blackjack</RootNamespace>
+        <AssemblyName>Blackjack</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
     </PropertyGroup>
@@ -38,6 +38,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Game.cs" />
+        <Compile Include="Hand.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>

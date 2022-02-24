@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace Dice
+namespace GameUtils
 {
     public class Deck
     {

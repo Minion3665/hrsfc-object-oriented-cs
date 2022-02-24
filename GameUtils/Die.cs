@@ -1,6 +1,6 @@
 using System;
 
-namespace Dice
+namespace GameUtils
 {
     public class Die
     {

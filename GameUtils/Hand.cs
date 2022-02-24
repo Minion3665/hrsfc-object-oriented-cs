@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Dice;
+using GameUtils;
 
-namespace GameOfWar
+namespace GameUtils
 {
     public class Hand
     {

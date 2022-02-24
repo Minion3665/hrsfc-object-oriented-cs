@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dice
+namespace GameUtils
 {
     internal class Program
     {
