@@ -4,9 +4,9 @@ using GameUtils;
 
 namespace Blackjack
 {
-    public class Hand : GameUtils.Hand
+    public class Hand : GameUtils.ScoredHand
     {
-        public int Score => GetCards().Item1;
+        public override int Score => GetCards().Item1;
         public override string ToString()
         {
             return string.Join(", ", GetCards().Item2);
