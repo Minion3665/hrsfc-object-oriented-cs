@@ -1,31 +1,27 @@
 using System;
 using System.Collections.Generic;
-using GameUtils;
 
 namespace GameUtils
 {
     public class Hand
     {
-        private readonly List<int> _cards = new List<int>();
+        protected readonly List<int> Cards = new List<int>();
 
-        public int Count => _cards.Count;
+        public int Count => Cards.Count;
         public bool Empty => Count == 0;
-        
-        public Card this[int index]
-        {
-            get => Card.FromIndex(_cards[index >= 0 ? index : Count + index]);
-        }
-        
+
+        public Card this[int index] => Card.FromIndex(Cards[index >= 0 ? index : Count + index]);
+
         public void Add(Card card)
         {
-            _cards.Add(card.Index);
+            Cards.Add(card.Index);
         }
 
         public Card Pop()
         {
             if (Empty) throw new InvalidOperationException("Hand is empty");
-            var card = _cards[0];
-            _cards.RemoveAt(0);
+            var card = Cards[0];
+            Cards.RemoveAt(0);
             return Card.FromIndex(card);
         }
     }

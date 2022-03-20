@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCardGame", "SimpleCar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameOfWar", "GameOfWar\GameOfWar.csproj", "{664623B6-4CF6-4CCB-A223-E1DDAD18101C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Match4", "Match4\Match4.csproj", "{EEB7A795-0D9C-4A8A-BCD1-CC759935A864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{664623B6-4CF6-4CCB-A223-E1DDAD18101C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{664623B6-4CF6-4CCB-A223-E1DDAD18101C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{664623B6-4CF6-4CCB-A223-E1DDAD18101C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEB7A795-0D9C-4A8A-BCD1-CC759935A864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB7A795-0D9C-4A8A-BCD1-CC759935A864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB7A795-0D9C-4A8A-BCD1-CC759935A864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB7A795-0D9C-4A8A-BCD1-CC759935A864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
